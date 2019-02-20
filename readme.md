@@ -1,5 +1,6 @@
 # _asm学习_
-
+![image](https://img.shields.io/badge/jdk-8+-brightgreen.svg)
+![image](https://img.shields.io/badge/org.ow2.asm-7.0-brightgreen.svg)
 ## 1. 字节码
 
 >源码编译成字节码的时候会做一下几步
@@ -38,3 +39,8 @@
  |int m(Object o)|(Ljava/lang/Object)I|
  |int[] m(int i, String s)|(ILjava/lang/String;)[I|
  |Object m(int[] i)|([I)Ljava/lang/Object;|
+ 
+## 2.事件模式
+
+- ClassVisitor必须按照下面的顺序调用
+>visit visitSource? visitOuterClass? ( visitAnnotation | visitAttribute )* ( visitInnerClass | visitField | visitMethod )* visitEnd
