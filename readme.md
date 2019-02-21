@@ -53,4 +53,4 @@
 
 - 注意
 
-    1.But class transformations done inside a ClassLoader can only transform the classes loaded by this class loader.If you want to transform all classes you will have to put your transformation inside a ClassFileTransformer, as defined in the java.lang.instrument package
+    1.But class transformations done inside a ClassLoader can only transform the classes loaded by this class loader.If you want to transform all classes you will have to put your transformation inside a ClassFileTransformer.
