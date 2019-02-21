@@ -5,6 +5,9 @@ import org.objectweb.asm.*;
 
 import java.io.IOException;
 
+/**
+ * 单独工作模式
+ */
 public class ClassReaderTest extends ClassVisitor {
 
 

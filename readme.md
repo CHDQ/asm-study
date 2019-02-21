@@ -44,3 +44,13 @@
 
 - ClassVisitor必须按照下面的顺序调用
 >visit visitSource? visitOuterClass? ( visitAnnotation | visitAttribute )* ( visitInnerClass | visitField | visitMethod )* visitEnd
+
+- 如果类名称需要更改的时候需要注意
+>Indeed the name of the class can appear in  many different places inside a compiled class, and all these occurrences must be changed to really rename the class.
+
+- 优化
+>If a ClassReader component detects that a MethodVisitor returned by the ClassVisitor passed as argument to its accept method comes from a ClassWriter, this means that the content of this method will not be transformed, and will in fact not even be seen by the application.
+
+- 注意
+
+    1.But class transformations done inside a ClassLoader can only transform the classes loaded by this class loader
