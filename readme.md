@@ -101,11 +101,11 @@
     
 2. method
     - stack
-    >Each frame contains two parts: a _*local variables part*_ and an _*operand stack
-     part*_. The _*local variables part*_ contains variables that can be accessed by their
-     index, in random order. The _*operand stack part*_, as its name implies, is a stack
+    >Each frame contains two parts: a ***local variables part*** and an ***operand stack
+     part***. The ***local variables part*** contains variables that can be accessed by their
+     index, in random order. The ***operand stack part***, as its name implies, is a stack
      of values that are used as operands by bytecode instructions. This means that
-     the values in this stack can only be accessed in Last In First Out order. _*Do
+     the values in this stack can only be accessed in Last In First Out order. ***Do
      not confuse the operand stack and the thread’s execution stack: each frame
-     in the execution stack contains its own operand stack.*_
+     in the execution stack contains its own operand stack.***
     
