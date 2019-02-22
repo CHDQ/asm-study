@@ -53,4 +53,40 @@
 
 - 注意
 
-    1.But class transformations done inside a ClassLoader can only transform the classes loaded by this class loader.If you want to transform all classes you will have to put your transformation inside a ClassFileTransformer.
+    - But class transformations done inside a ClassLoader can only transform the classes loaded by this class loader.If you want to transform all classes you will have to put your transformation inside a ClassFileTransformer.
+    - 增加元素的时候(29页)
+    >You cannot do
+     this in the visit method, for example, because this may result in a call to
+     visitField followed by visitSource, visitOuterClass, visitAnnotation
+     or visitAttribute, which is not valid. You cannot put this new call in
+     the visitSource, visitOuterClass, visitAnnotation or visitAttribute
+     methods, for the same reason. The only possibilities are the visitInnerClass,
+     visitField, visitMethod or visitEnd methods.
+    - MultiClassAdapter
+    ```
+    public class MultiClassAdapter extends ClassVisitor {
+        protected ClassVisitor[] cvs;
+        public MultiClassAdapter(ClassVisitor[] cvs) {
+            super(ASM4);
+            this.cvs = cvs;
+        }
+        @Override public void visit(int version, int access, String name,
+        String signature, String superName, String[] interfaces) {
+            for (ClassVisitor cv : cvs) {
+              cv.visit(version, access, name, signature, superName, interfaces);
+            }
+        }
+        ...
+    }
+    ```
+    - TraceClassVisitor可以打印出修改后的class文件的文本描述
+    - CheckClassAdapter检查生成的class是否有效(34页)
+    ```
+      ClassWriter cw = new ClassWriter(0);
+      TraceClassVisitor tcv = new TraceClassVisitor(cw, printWriter);
+      CheckClassAdapter cv = new CheckClassAdapter(tcv);
+      cv.visit(...);
+      ...
+      cv.visitEnd();
+      byte b[] = cw.toByteArray();
+    ```
