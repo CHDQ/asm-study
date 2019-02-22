@@ -2,6 +2,7 @@ package org.dq.event.clazz;
 
 
 import org.objectweb.asm.*;
+import org.objectweb.asm.util.ASMifier;
 
 import java.io.IOException;
 
