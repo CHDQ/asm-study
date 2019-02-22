@@ -100,7 +100,7 @@
         ```
     
 2. method
-    - stack
+    - stack(28页)
     >Each frame contains two parts: a ***local variables part*** and an ***operand stack
      part***. The ***local variables part*** contains variables that can be accessed by their
      index, in random order. The ***operand stack part***, as its name implies, is a stack
@@ -109,3 +109,20 @@
      not confuse the operand stack and the thread’s execution stack: each frame
      in the execution stack contains its own operand stack.***
     
+    >The size of the local variables and operand stack parts depends on the method’s
+     code. It is computed at compile time and is stored along with the bytecode
+     instructions in compiled classes. As a consequence, all the frames that correspond to the invocation of a given method have the same size, but frames
+     that correspond to different methods can have different sizes for their local
+     variables and operand stack parts.
+     
+    >(39页)Instruction arguments must not be confused with instruction operands: argument values
+     are statically known and are stored in the compiled code, while operand
+     values come from the operand stack and are known only at runtime.
+    
+    - 命令说明在39页
+    >The ILOAD, LLOAD, FLOAD, DLOAD, and ALOAD instructions read a local variable
+     and push its value on the operand stack.
+     
+    >Symmetrically the ISTORE, LSTORE,
+     FSTORE, DSTORE and ASTORE instructions pop a value from the operand stack
+     and store it in a local variable designated by its index i.
