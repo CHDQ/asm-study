@@ -126,3 +126,15 @@
     >Symmetrically the ISTORE, LSTORE,
      FSTORE, DSTORE and ASTORE instructions pop a value from the operand stack
      and store it in a local variable designated by its index i.
+     
+    >(40/46)As said above, starting from Java 6, compiled classes contain, in addition to
+     bytecode, a set of stack map frames. In order to save space, a compiled method
+     does not contain one frame per instruction: in fact it contains only the frames
+     for the instructions that correspond to jump targets or exception handlers, or
+     that follow unconditional jump instructions. Indeed the other frames can be
+     easily and quickly inferred from these ones.
+     
+     >In order to save even more space, each frame is compressed by storing only its
+      difference compared to the previous frame, and the initial frame is not stored at all, because it can easily be deduced from the method parameter types. 
+      
+      - 44-45/50-51 ClassWriter构造函数的参数含义
