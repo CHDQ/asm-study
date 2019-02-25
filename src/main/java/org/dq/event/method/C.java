@@ -6,6 +6,10 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 
+import javax.sound.midi.Soundbank;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 public class C {
 
     public void m() throws Exception {
@@ -19,8 +23,12 @@ public class C {
         classReader.accept(classVisitor, 0);
         MyClassLoader myClassLoader = new MyClassLoader();
         Class aClass = myClassLoader.defineClass("org.dq.event.method.C", cw.toByteArray());
-        C o = (C) aClass.getConstructor().newInstance();
-        o.m();
+        Method m = aClass.getMethod("m", null);
+        m.invoke(aClass.newInstance());
+        Field timer = aClass.getDeclaredField("timer");
+        timer.setAccessible(true);
+        Object o = timer.get(aClass);
+        System.out.println(o);
 //        new C().m();
     }
 }
