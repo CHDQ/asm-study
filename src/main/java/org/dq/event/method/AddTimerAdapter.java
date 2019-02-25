@@ -40,7 +40,7 @@ public class AddTimerAdapter extends ClassVisitor {
     @Override
     public void visitEnd() {
         if (!isInterface) {
-            System.out.println(LONG_TYPE.getDescriptor());
+//            System.out.println(LONG_TYPE.getDescriptor());
             FieldVisitor fieldVisitor = super.visitField(ACC_PUBLIC + ACC_STATIC, "timer", "J", null, null);
             if (fieldVisitor != null) {
                 fieldVisitor.visitEnd();
