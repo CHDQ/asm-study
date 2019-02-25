@@ -137,4 +137,7 @@
      >In order to save even more space, each frame is compressed by storing only its
       difference compared to the previous frame, and the initial frame is not stored at all, because it can easily be deduced from the method parameter types. 
       
-      - 44-45/50-51 ClassWriter构造函数的参数含义
+     - 44-45/50-51 ClassWriter构造函数的参数含义
+     - tools
+     >过时了，没有main方法<br>
+     java -classpath asm-7.0.jar:asm-util-7.0.jar org.objectweb.asm.util.TraceClassVisitor java.lang.Void 

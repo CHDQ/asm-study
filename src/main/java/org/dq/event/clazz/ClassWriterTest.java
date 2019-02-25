@@ -1,7 +1,5 @@
 package org.dq.event.clazz;
 
-import jdk.internal.org.objectweb.asm.util.Printer;
-import jdk.internal.org.objectweb.asm.util.TraceFieldVisitor;
 import org.objectweb.asm.ClassWriter;
 
 
