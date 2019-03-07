@@ -47,7 +47,8 @@ public class RenameSignatureAdapter extends SignatureVisitor {
 
     @Override
     public SignatureVisitor visitParameterType() {
-        return signatureVisitor.visitParameterType();
+        signatureVisitor.visitParameterType();
+        return this;
     }
 
     @Override
@@ -58,6 +59,29 @@ public class RenameSignatureAdapter extends SignatureVisitor {
     @Override
     public void visitEnd() {
         signatureVisitor.visitEnd();
+    }
+
+    @Override
+    public void visitInnerClassType(String name) {
+        oldName = oldName + "." + name;
+        String newName = renaming.get(oldName);
+        signatureVisitor.visitInnerClassType(newName == null ? name : newName);
+    }
+
+    @Override
+    public SignatureVisitor visitTypeArgument(char c) {
+        signatureVisitor.visitTypeArgument(c);
+        return this;
+    }
+
+    @Override
+    public void visitBaseType(char c) {
+        signatureVisitor.visitBaseType(c);
+    }
+
+    @Override
+    public void visitTypeVariable(String s) {
+        signatureVisitor.visitTypeVariable(s);//泛型<TK;TV;>
     }
 
     public static void main(String[] args) {
