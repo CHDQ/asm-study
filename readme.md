@@ -100,4 +100,44 @@
         ```
     
 2. method
+    - stack(28页)
+    >Each frame contains two parts: a ***local variables part*** and an ***operand stack
+     part***. The ***local variables part*** contains variables that can be accessed by their
+     index, in random order. The ***operand stack part***, as its name implies, is a stack
+     of values that are used as operands by bytecode instructions. This means that
+     the values in this stack can only be accessed in Last In First Out order. ***Do
+     not confuse the operand stack and the thread’s execution stack: each frame
+     in the execution stack contains its own operand stack.***
     
+    >The size of the local variables and operand stack parts depends on the method’s
+     code. It is computed at compile time and is stored along with the bytecode
+     instructions in compiled classes. As a consequence, all the frames that correspond to the invocation of a given method have the same size, but frames
+     that correspond to different methods can have different sizes for their local
+     variables and operand stack parts.
+     
+    >(39页)Instruction arguments must not be confused with instruction operands: argument values
+     are statically known and are stored in the compiled code, while operand
+     values come from the operand stack and are known only at runtime.
+    
+    - 命令说明在39页
+    >The ILOAD, LLOAD, FLOAD, DLOAD, and ALOAD instructions read a local variable
+     and push its value on the operand stack.
+     
+    >Symmetrically the ISTORE, LSTORE,
+     FSTORE, DSTORE and ASTORE instructions pop a value from the operand stack
+     and store it in a local variable designated by its index i.
+     
+    >(40/46)As said above, starting from Java 6, compiled classes contain, in addition to
+     bytecode, a set of stack map frames. In order to save space, a compiled method
+     does not contain one frame per instruction: in fact it contains only the frames
+     for the instructions that correspond to jump targets or exception handlers, or
+     that follow unconditional jump instructions. Indeed the other frames can be
+     easily and quickly inferred from these ones.
+     
+     >In order to save even more space, each frame is compressed by storing only its
+      difference compared to the previous frame, and the initial frame is not stored at all, because it can easily be deduced from the method parameter types. 
+      
+     - 44-45/50-51 ClassWriter构造函数的参数含义
+     - tools
+     >过时了，没有main方法<br>
+     java -classpath asm-7.0.jar:asm-util-7.0.jar org.objectweb.asm.util.TraceClassVisitor java.lang.Void 
