@@ -141,3 +141,12 @@
      - tools
      >过时了，没有main方法<br>
      java -classpath asm-7.0.jar:asm-util-7.0.jar org.objectweb.asm.util.TraceClassVisitor java.lang.Void 
+     
+ # 加载修改后的字节码
+  参见APPTest.java
+  ```
+        Method defineClass = Class.forName("java.lang.ClassLoader").getDeclaredMethod("defineClass", String.class, byte[].class, Integer.TYPE, Integer.TYPE);
+        defineClass.setAccessible(true);
+        Class aClass = (Class) defineClass.invoke(classLoader, "org.dq.event.method.C", cw.toByteArray(), 0, cw.toByteArray().length);
+        C c = (C) aClass.getConstructor().newInstance();
+  ```

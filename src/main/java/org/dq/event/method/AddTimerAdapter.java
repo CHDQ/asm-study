@@ -6,6 +6,9 @@ import jdk.internal.org.objectweb.asm.commons.LocalVariablesSorter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Type;
+
+import java.lang.reflect.Modifier;
 
 import static org.objectweb.asm.Opcodes.*;
 import static org.objectweb.asm.Type.*;
@@ -76,6 +79,9 @@ public class AddTimerAdapter extends ClassVisitor {
                 super.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
                 super.visitInsn(LADD);
                 super.visitFieldInsn(PUTSTATIC, owner, "timer", "J");
+                super.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                super.visitFieldInsn(GETSTATIC, owner, "timer", LONG_TYPE.getDescriptor());
+                super.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(J)V", false);
             }
             super.visitInsn(opcode);
         }
