@@ -3,7 +3,7 @@
 ![image](https://img.shields.io/badge/org.ow2.asm-7.0-brightgreen.svg)
 ## 1. 字节码
 
->源码编译成字节码的时候会做一下几步
+>源码编译成字节码的时候会做以下几步
 
 >1.将'.'替换成'/'
 
